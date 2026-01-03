@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
+import { getLocalImage } from "../utils/imageUtils";
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -45,8 +46,7 @@ const Hero: React.FC = () => {
         <div
           className="absolute inset-0 bg-cover bg-center animate-ken-burns"
           style={{
-            backgroundImage:
-              "url('../images/background.jpg')",
+            backgroundImage: `url('${getLocalImage("background.jpg")}')`,
           }}
         ></div>
         {/* Overlay gradient */}
@@ -110,8 +110,7 @@ const Hero: React.FC = () => {
               <div
                 className="absolute inset-0 bg-[length:70%] bg-[center_top_70%] transition-transform duration-700 group-hover:scale-110"
                 style={{
-                  backgroundImage:
-                    "url('../images/highlight.jpg')",
+                  backgroundImage: `url('${getLocalImage("highlight.jpg")}')`,
                 }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent mix-blend-overlay"></div>

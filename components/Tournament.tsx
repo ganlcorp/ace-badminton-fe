@@ -125,8 +125,8 @@ const Tournament: React.FC = () => {
             <div className="rounded-2xl overflow-hidden shadow-xl rotate-2 hover:rotate-0 transition-transform duration-500 group border-4 border-white/60 bg-white/50 backdrop-blur-sm">
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/10 to-transparent z-10 pointer-events-none" />
               <img
-                src={getLocalImage("summer_2025.jpg", "https://images.unsplash.com/photo-1626224583764-84786c71971e?q=80&w=2070&auto=format&fit=crop")}
-                alt="Summer Smash Tournament"
+                src={getLocalImage("summer_2025.jpg", "https://cms.bwfbadminton.com/wp-content/uploads/2021/04/Hiroyuki-Endo-Yuta-Watanabe2_AE2021-scaled.jpg")}
+                alt="Amazing Summer Tournament 2025"
                 className="w-full h-[400px] object-contain transition-transform duration-700 bg-emerald-50/30"
               />
               <div className="absolute bottom-6 left-6 z-20">
@@ -211,7 +211,7 @@ const Tournament: React.FC = () => {
         {/* Background Image Layer */}
         <div
             className="absolute inset-0 bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=2070&auto=format&fit=crop')` }}
+            style={{ backgroundImage: `url('https://cms.bwfbadminton.com/wp-content/uploads/2021/04/Hiroyuki-Endo-Yuta-Watanabe2_AE2021-scaled.jpg')` }}
         />
         {/* Overlay: Smooth Gradient from Emerald-100 to Emerald-50 and back to Emerald-100 */}
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-100/95 via-emerald-50/90 to-emerald-100/95 backdrop-blur-sm" />

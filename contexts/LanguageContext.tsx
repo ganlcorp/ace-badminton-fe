@@ -94,8 +94,8 @@ const translations = {
       of: "of"
     },
     tournament: {
-      next_big_event: "Next Big Event:",
-      summer_smash: "Summer Smash 2025",
+      next_big_event: "Next Event:",
+      summer_smash: "Amazing Summer Tournament 2025",
       event_desc: "Explode into a scorching Summer 2025 with the ACE crew!",
       date_label: "Date",
       location_label: "Location",
