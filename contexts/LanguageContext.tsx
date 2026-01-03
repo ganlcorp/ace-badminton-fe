@@ -31,7 +31,7 @@ const translations = {
       details: "See Details",
       items: [
         {
-          title: "Counquer the winter",
+          title: "Conquer the winter",
           desc: "Winter Badminton Tournament 2024",
           label: "Sunday, 22/12/2024"
         },
@@ -39,7 +39,10 @@ const translations = {
           title: "Amazing Summer Tournament",
           desc: "Amazing Summer Tournament 2025",
           label: "Weekends"
-        }
+        },
+        // Fillers to prevent crashes if array is accessed by index
+        { title: "Coming Soon", desc: "", label: "" },
+        { title: "Coming Soon", desc: "", label: "" }
       ]
     },
     hosts: {
@@ -72,6 +75,84 @@ const translations = {
         advanced: "Advanced",
         pro: "Pro"
       }
+    },
+    ranking: {
+      title: "Current Rankings",
+      search_placeholder: "Search for players...",
+      show: "Show:",
+      entries: "entries",
+      headers: {
+        rank: "Rank",
+        name: "Name",
+        tournaments: "Tournaments",
+        points: "Points"
+      },
+      age: "Age",
+      pts: "pts",
+      showing: "Showing",
+      to: "to",
+      of: "of"
+    },
+    tournament: {
+      next_big_event: "Next Big Event:",
+      summer_smash: "Summer Smash 2025",
+      event_desc: "Explode into a scorching Summer 2025 with the ACE crew!",
+      date_label: "Date",
+      location_label: "Location",
+      prize_label: "Prize Pool",
+      register_now: "Register Now",
+      view_details: "View Details",
+      schedule_title: "Upcoming Tournament Schedule",
+      schedule_sub: "Plan your season ahead. Check out the upcoming tournaments and secure your spot in the competition.",
+      items: {
+        autumn_open: "Comming soon",
+        autumn_desc: "You will see soon.",
+        junior_champ: "Comming soon",
+        junior_desc: "You will see soon.",
+        club_ladder: "Comming soon",
+        ladder_desc: "You will see soon.",
+        open_for_all: "OPEN FOR ALL",
+        juniors_only: "JUNIORS ONLY",
+        members_only: "MEMBERS ONLY"
+      },
+      notify_title: "Don't see a tournament for you?",
+      notify_desc: "We are constantly adding new events. Subscribe to our newsletter to get notified about upcoming tournaments in your area.",
+      notify_placeholder: "Enter your email",
+      notify_btn: "Notify Me"
+    },
+    contact: {
+      title: "Get in Touch",
+      subtitle: "Have questions about memberships, tournaments, or training? Reach out to our dedicated team members below.",
+      team: [
+        {
+          name: "Cao Nhựt Linh",
+          role: "Admin",
+          desc: "Admin member",
+          email: "nhutlinhisme@gmail.com",
+          phone: "090x.xxx.xxx"
+        },
+        {
+          name: "Trần Xuân Huy",
+          role: "Admin",
+          desc: "Admin member",
+          email: "huy.tran@gmail.com",
+          phone: "090x.xxx.xxx"
+        },
+        {
+          name: "Nguyễn Thị Thu Uyên",
+          role: "Admin",
+          desc: "Admin member",
+          email: "uyen.nguyen@gmail.com",
+          phone: "090x.xxx.xxx"
+        },
+        {
+          name: "Lê Phúc Minh Quân",
+          role: "Admin",
+          desc: "Admin member",
+          email: "mql@gmail.com",
+          phone: "090x.xxx.xxx"
+        }
+      ]
     },
     footer: {
       privacy: "Privacy Policy",
@@ -109,11 +190,13 @@ const translations = {
           title: "Giải cầu lông mùa hè tuyệt vời",
           desc: "Giải cầu lông mùa hè tuyệt vời 2025",
           label: "Chủ nhật, 22/06/2025"
-        }
+        },
+        { title: "Sắp ra mắt", desc: "", label: "" },
+        { title: "Sắp ra mắt", desc: "", label: "" }
       ]
     },
     hosts: {
-      title: "Đội ngũ của chúng tôi",
+      title: "Đội ngũ Admin ACE",
       items: [
         { role: "Team Admin", desc: "Cao Nhut Linh - 1998" },
         { role: "Team Admin", desc: "Tran Xuan Huy - 1998" },
@@ -142,6 +225,84 @@ const translations = {
         advanced: "Nâng cao",
         pro: "Chuyên nghiệp"
       }
+    },
+    ranking: {
+      title: "Bảng Xếp Hạng",
+      search_placeholder: "Tìm kiếm người chơi...",
+      show: "Hiển thị:",
+      entries: "mục",
+      headers: {
+        rank: "Hạng",
+        name: "Tên",
+        tournaments: "Giải đấu",
+        points: "Điểm"
+      },
+      age: "Tuổi",
+      pts: "điểm",
+      showing: "Hiển thị",
+      to: "đến",
+      of: "của"
+    },
+    tournament: {
+      next_big_event: "Sự kiện Diễn ra sắp tới",
+      summer_smash: "Mùa Hè diệu kì 2025",
+      event_desc: "Cùng Tham gia giải đấu để có một mùa hè bùng nổ.!",
+      date_label: "Ngày",
+      location_label: "Địa điểm",
+      prize_label: "Giải thưởng",
+      register_now: "Đăng ký ngay",
+      view_details: "Xem chi tiết",
+      schedule_title: "Lịch Trình Giải Đấu Sắp Tới",
+      schedule_sub: "Lên kế hoạch cho mùa giải của bạn. Kiểm tra các giải đấu sắp tới và đảm bảo suất thi đấu của bạn.",
+      items: {
+        autumn_open: "Sắp diễn ra",
+        autumn_desc: "Chúng tôi sẽ gặp lại bạn sớm thôi, đón chờ nhé.",
+        junior_champ: "Sắp diễn ra",
+        junior_desc: "Chúng tôi sẽ gặp lại bạn sớm thôi, đón chờ nhé.",
+        club_ladder: "Sắp diễn ra",
+        ladder_desc: "Chúng tôi sẽ gặp lại bạn sớm thôi, đón chờ nhé.",
+        open_for_all: "MỞ CHO TẤT CẢ",
+        juniors_only: "CHỈ DÀNH CHO THIẾU NIÊN",
+        members_only: "CHỈ DÀNH CHO THÀNH VIÊN"
+      },
+      notify_title: "Không thấy giải đấu phù hợp?",
+      notify_desc: "Chúng tôi liên tục bổ sung các sự kiện mới. Đăng ký nhận bản tin để được thông báo về các giải đấu sắp tới trong khu vực của bạn.",
+      notify_placeholder: "Nhập email của bạn",
+      notify_btn: "Thông báo cho tôi"
+    },
+    contact: {
+      title: "Liên Hệ",
+      subtitle: "Bạn có câu hỏi về quyền thành viên, giải đấu hoặc tập luyện? Hãy liên hệ với các thành viên trong đội ngũ chuyên trách của chúng tôi dưới đây.",
+      team: [
+        {
+          name: "Cao Nhựt Linh",
+          role: "Admin",
+          desc: "Admin member",
+          email: "nhutlinhisme@gmail.com",
+          phone: "090x.xxx.xxx"
+        },
+        {
+          name: "Trần Xuân Huy",
+          role: "Admin",
+          desc: "Admin member",
+          email: "huy.tran@gmail.com",
+          phone: "090x.xxx.xxx"
+        },
+        {
+          name: "Nguyễn Thị Thu Uyên",
+          role: "Admin",
+          desc: "Admin member",
+          email: "uyen.nguyen@gmail.com",
+          phone: "090x.xxx.xxx"
+        },
+        {
+          name: "Lê Phúc Minh Quân",
+          role: "Admin",
+          desc: "Admin member",
+          email: "mql@gmail.com",
+          phone: "090x.xxx.xxx"
+        }
+      ]
     },
     footer: {
       privacy: "Chính sách bảo mật",

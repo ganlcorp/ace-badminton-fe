@@ -14,7 +14,7 @@ export interface Host {
   name: string;
   role: string;
   description: string;
-  image: string;
+  imageName: string;
 }
 
 export interface FormData {
