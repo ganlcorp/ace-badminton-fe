@@ -1,19 +1,28 @@
 import React, { useRef } from "react";
-import { Activity } from "../types";
-import { Calendar, Users, Trophy, GraduationCap, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Users, ArrowRight, ChevronLeft, ChevronRight, LucideIcon, Sparkles } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "../contexts/LanguageContext";
+import { getLocalImage } from "../utils/imageUtils";
+
+interface ActivityItem {
+  id: number;
+  title: string;
+  description: string;
+  imageName: string;
+  label: string;
+  icon: LucideIcon;
+}
 
 const Activities: React.FC = () => {
   const { t } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const activities: Activity[] = [
+  const activities: ActivityItem[] = [
     {
       id: 1,
       title: t.activities.items[0].title,
       description: t.activities.items[0].desc,
-      image: "../images/spring_2024.jpg",
+      imageName: "spring_2024.jpg",
       label: t.activities.items[0].label,
       icon: Calendar
     },
@@ -21,7 +30,7 @@ const Activities: React.FC = () => {
       id: 2,
       title: t.activities.items[1].title,
       description: t.activities.items[1].desc,
-      image: "../images/summer_2025.jpg",
+      imageName: "summer_2025.jpg",
       label: t.activities.items[1].label,
       icon: Users
     }
@@ -63,7 +72,7 @@ const Activities: React.FC = () => {
                     <div className="h-48 w-full overflow-hidden">
                       <div
                         className="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover/card:scale-110"
-                        style={{ backgroundImage: `url('${activity.image}')` }}
+                        style={{ backgroundImage: `url('${getLocalImage(activity.imageName)}')` }}
                       />
                     </div>
                     <div className="p-6 flex flex-col gap-3 flex-1 relative z-10 bg-white">
@@ -87,6 +96,29 @@ const Activities: React.FC = () => {
                 </ScrollReveal>
               </div>
             ))}
+
+            {/* Dynamic Coming Soon Card (Only shows if items < 3) */}
+            {activities.length < 3 && (
+               <div className="min-w-[300px] md:min-w-[360px] flex-1 snap-center">
+                <ScrollReveal delay={0.2} direction="right" className="h-full">
+                  <div className="flex flex-col h-full rounded-xl bg-white/5 border-2 border-dashed border-white/20 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 items-center justify-center p-8 group/coming-soon cursor-default">
+                    <div className="size-20 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover/coming-soon:scale-110 transition-transform duration-500">
+                      <Sparkles className="w-10 h-10 text-gray-400 group-hover/coming-soon:text-primary transition-colors" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white/60 group-hover/coming-soon:text-white transition-colors font-display mb-2">
+                      Coming Soon
+                    </h3>
+                    <p className="text-white/40 text-center text-sm mb-6 max-w-[200px]">
+                      We are planning more exciting activities for you.
+                    </p>
+                    <div className="flex items-center gap-2 text-white/40 group-hover/coming-soon:text-primary transition-colors font-medium">
+                      <span>Stay tuned</span>
+                      <ArrowRight className="w-4 h-4 animate-pulse" />
+                    </div>
+                  </div>
+                </ScrollReveal>
+               </div>
+            )}
           </div>
 
           <div className="flex justify-center gap-4 mt-4">
