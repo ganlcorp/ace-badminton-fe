@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Award, Menu, ChevronDown, X } from "lucide-react";
+import { Award, Menu, ChevronDown, X, Activity } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -190,4 +190,4 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
   );
 };
 
-export default Header;
+export default Activity;
