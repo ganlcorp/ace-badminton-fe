@@ -125,9 +125,9 @@ const Tournament: React.FC = () => {
             <div className="rounded-2xl overflow-hidden shadow-xl rotate-2 hover:rotate-0 transition-transform duration-500 group border-4 border-white/60 bg-white/50 backdrop-blur-sm">
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/10 to-transparent z-10 pointer-events-none" />
               <img
-                src={getLocalImage("summer_2025.jpg", "https://cms.bwfbadminton.com/wp-content/uploads/2021/04/Hiroyuki-Endo-Yuta-Watanabe2_AE2021-scaled.jpg")}
-                alt="Amazing Summer Tournament 2025"
-                className="w-full h-[400px] object-contain transition-transform duration-700 bg-emerald-50/30"
+                src={getLocalImage("summer_2025.jpg", "https://images.unsplash.com/photo-1626224583764-84786c71971e?q=80&w=2070&auto=format&fit=crop")}
+                alt="Summer Smash Tournament"
+                className="w-full h-[300px] md:h-[400px] object-contain transition-transform duration-700 bg-emerald-50/30"
               />
               <div className="absolute bottom-6 left-6 z-20">
                 <div className="flex items-center gap-2 bg-emerald-600/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-white text-sm font-bold shadow-lg">
@@ -154,7 +154,7 @@ const Tournament: React.FC = () => {
               </h2>
             </div>
 
-            <p className="text-emerald-900/80 text-lg leading-relaxed">
+            <p className="text-emerald-900/80 text-base md:text-lg leading-relaxed">
               {t.tournament.event_desc}
             </p>
 
@@ -165,7 +165,7 @@ const Tournament: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-emerald-900/60 font-bold uppercase">{t.tournament.date_label}</p>
-                  <p className="font-bold text-emerald-950">Jun 22-23, 2025</p>
+                  <p className="font-bold text-emerald-950">Aug 24-25, 2024</p>
                 </div>
               </div>
 
@@ -175,7 +175,7 @@ const Tournament: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-emerald-900/60 font-bold uppercase">{t.tournament.prize_label}</p>
-                  <p className="font-bold text-emerald-950">$50 USD</p>
+                  <p className="font-bold text-emerald-950">$2,000 USD</p>
                 </div>
               </div>
 
@@ -185,16 +185,16 @@ const Tournament: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-emerald-900/60 font-bold uppercase">{t.tournament.location_label}</p>
-                  <p className="font-bold text-emerald-950">Ho Chi Minh City</p>
+                  <p className="font-bold text-emerald-950">City Sports Hall</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex gap-4 mt-6">
-              <button className="h-12 px-8 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-600/30">
+            <div className="flex flex-wrap gap-4 mt-6">
+              <button className="h-12 px-8 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-600/30 flex-1 sm:flex-none">
                 {t.tournament.register_now}
               </button>
-              <button className="h-12 px-8 rounded-lg border border-emerald-600/30 hover:bg-emerald-100/50 text-emerald-800 font-bold transition-all bg-transparent">
+              <button className="h-12 px-8 rounded-lg border border-emerald-600/30 hover:bg-emerald-100/50 text-emerald-800 font-bold transition-all bg-transparent flex-1 sm:flex-none">
                 {t.tournament.view_details}
               </button>
             </div>
@@ -211,7 +211,7 @@ const Tournament: React.FC = () => {
         {/* Background Image Layer */}
         <div
             className="absolute inset-0 bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: `url('https://cms.bwfbadminton.com/wp-content/uploads/2021/04/Hiroyuki-Endo-Yuta-Watanabe2_AE2021-scaled.jpg')` }}
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=2070&auto=format&fit=crop')` }}
         />
         {/* Overlay: Smooth Gradient from Emerald-100 to Emerald-50 and back to Emerald-100 */}
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-100/95 via-emerald-50/90 to-emerald-100/95 backdrop-blur-sm" />
@@ -235,11 +235,8 @@ const Tournament: React.FC = () => {
 
           {/* Timeline Container */}
           <div className="relative w-full">
-            {/* Vertical Line - Darker green for visibility on light bg */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-emerald-200 -translate-x-1/2 hidden md:block" />
-
-            {/* Mobile Vertical Line */}
-            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-emerald-200 md:hidden" />
+            {/* Vertical Line - Center on desktop, left on mobile */}
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-emerald-200 -translate-x-1/2" />
 
             {/* MONTH HEADER */}
             <motion.div
@@ -250,7 +247,7 @@ const Tournament: React.FC = () => {
               className="flex justify-center mb-12 relative z-10"
             >
               <span className="bg-white/80 backdrop-blur border border-emerald-200 px-6 py-2 rounded-full text-emerald-800 font-bold shadow-sm">
-                JAN 2026
+                September 2024
               </span>
             </motion.div>
 
@@ -284,14 +281,14 @@ const Tournament: React.FC = () => {
                     <h3 className="text-lg font-bold text-emerald-950 mb-2">{t.tournament.items.autumn_open}</h3>
                     <p className="text-sm text-emerald-900/80 mb-4 font-medium">{t.tournament.items.autumn_desc}</p>
                     <div className="flex justify-end gap-4 text-xs font-semibold text-emerald-800">
-                      <span className="flex items-center gap-1"><Trophy className="w-3 h-3 text-yellow-500" /> ...</span>
+                      <span className="flex items-center gap-1"><Trophy className="w-3 h-3 text-yellow-500" /> $500 Prize</span>
                       <span className="flex items-center gap-1"><Users className="w-3 h-3 text-emerald-600" /> Singles/Doubles</span>
                     </div>
                   </div>
                 </motion.div>
               </motion.div>
 
-               {/* Center Node */}
+               {/* Center Node - Aligned to line */}
               <motion.div
                 variants={centerNodeVariants}
                 initial="hidden"
@@ -308,7 +305,7 @@ const Tournament: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="pl-16 md:pl-10 order-2 md:order-2 md:w-[45%] text-left"
+                className="pl-16 md:pl-10 order-2 md:order-2 w-full md:w-[45%] text-left"
               >
                  {/* Mobile Card shown here (Slide from Right on mobile) */}
                  <motion.div
@@ -334,13 +331,13 @@ const Tournament: React.FC = () => {
                       <h3 className="text-lg font-bold text-emerald-950 mb-2">{t.tournament.items.autumn_open}</h3>
                       <p className="text-sm text-emerald-900/80 mb-4 font-medium">{t.tournament.items.autumn_desc}</p>
                       <div className="flex gap-4 text-xs font-semibold text-emerald-800">
-                        <span className="flex items-center gap-1"><Trophy className="w-3 h-3 text-yellow-500" /> $50 Prize</span>
+                        <span className="flex items-center gap-1"><Trophy className="w-3 h-3 text-yellow-500" /> $500 Prize</span>
                         <span className="flex items-center gap-1"><Users className="w-3 h-3 text-emerald-600" /> Singles/Doubles</span>
                       </div>
                     </div>
                  </motion.div>
 
-                 <h4 className="text-emerald-700 font-bold text-lg">JAN 1st</h4>
+                 <h4 className="text-emerald-700 font-bold text-lg">Sept 10th</h4>
                  <p className="text-emerald-600/70 font-medium text-sm">09:00 AM - 06:00 PM</p>
               </motion.div>
             </div>
@@ -353,9 +350,9 @@ const Tournament: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="order-2 md:order-1 md:w-[45%] mb-4 md:mb-0 md:pr-10 md:text-right"
+                className="hidden md:block order-2 md:order-1 md:w-[45%] mb-4 md:mb-0 md:pr-10 md:text-right"
               >
-                  <h4 className="text-emerald-700 font-bold text-lg">JAN 22nd</h4>
+                  <h4 className="text-emerald-700 font-bold text-lg">Sept 22nd</h4>
                   <p className="text-emerald-600/70 font-medium text-sm">10:00 AM - 04:00 PM</p>
               </motion.div>
 
@@ -376,7 +373,7 @@ const Tournament: React.FC = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
-                className="pl-16 md:pl-10 order-2 md:order-2 md:w-[45%] text-left"
+                className="pl-16 md:pl-10 order-2 md:order-2 w-full md:w-[45%] text-left"
               >
                 <motion.div
                     whileHover={{ scale: 1.05, y: -5 }}
@@ -400,11 +397,17 @@ const Tournament: React.FC = () => {
                     <h3 className="text-lg font-bold text-emerald-950 mb-2 relative z-10">{t.tournament.items.junior_champ}</h3>
                     <p className="text-sm text-emerald-900/80 mb-4 font-medium relative z-10">{t.tournament.items.junior_desc}</p>
                     <div className="flex gap-4 text-xs font-semibold text-emerald-800 relative z-10">
-                      <span className="flex items-center gap-1"><Trophy className="w-3 h-3 text-yellow-500" /> ...</span>
+                      <span className="flex items-center gap-1"><Trophy className="w-3 h-3 text-yellow-500" /> Trophies & Medals</span>
                       <span className="flex items-center gap-1"><Users className="w-3 h-3 text-emerald-600" /> U15 / U17</span>
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Mobile Date - shown below card */}
+                <div className="md:hidden mt-2">
+                    <h4 className="text-emerald-700 font-bold text-lg">Sept 22nd</h4>
+                    <p className="text-emerald-600/70 font-medium text-sm">10:00 AM - 04:00 PM</p>
+                </div>
               </motion.div>
             </div>
 
@@ -417,7 +420,7 @@ const Tournament: React.FC = () => {
               className="flex justify-center mb-12 relative z-10"
             >
               <span className="bg-white/80 backdrop-blur border border-emerald-200 px-6 py-2 rounded-full text-emerald-800 font-bold shadow-sm">
-                JAN 2026
+                October 2024
               </span>
             </motion.div>
 
@@ -474,7 +477,7 @@ const Tournament: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="pl-16 md:pl-10 order-2 md:order-2 md:w-[45%] text-left"
+                className="pl-16 md:pl-10 order-2 md:order-2 w-full md:w-[45%] text-left"
               >
                  {/* Mobile Card shown here (Slide from Right) */}
                  <motion.div
@@ -506,7 +509,7 @@ const Tournament: React.FC = () => {
                     </div>
                  </motion.div>
 
-                 <h4 className="text-emerald-700 font-bold text-lg">JAN 30th</h4>
+                 <h4 className="text-emerald-700 font-bold text-lg">Oct 05th</h4>
                  <p className="text-emerald-600/70 font-medium text-sm">01:00 PM - 08:00 PM</p>
               </motion.div>
             </div>

@@ -43,17 +43,17 @@ const Contact: React.FC = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="w-full flex flex-col items-center min-h-screen bg-background-light pb-20 pt-28 px-4 md:px-10"
+      className="w-full flex flex-col items-center min-h-screen bg-background-light pb-20 pt-24 md:pt-28 px-4 md:px-10"
     >
       {/* Header Section */}
       <motion.div
         variants={itemVariants}
-        className="text-center max-w-3xl mx-auto mb-16"
+        className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
       >
-        <h1 className="text-[#111418] text-4xl md:text-5xl font-black font-display mb-4">
+        <h1 className="text-[#111418] text-3xl md:text-5xl font-black font-display mb-4">
           {t.contact.title}
         </h1>
-        <p className="text-gray-500 text-lg leading-relaxed">
+        <p className="text-gray-500 text-base md:text-lg leading-relaxed">
           {t.contact.subtitle}
         </p>
       </motion.div>
@@ -72,14 +72,14 @@ const Contact: React.FC = () => {
               <div className={`flex flex-col md:flex-row items-center gap-8 ${!isEven ? 'md:flex-row-reverse' : ''}`}>
 
                 {/* Text Content */}
-                <div className="flex-1 text-center md:text-left">
-                  <h2 className="text-2xl font-bold text-[#111418] font-display mb-1">
+                <div className="flex-1 text-center md:text-left w-full">
+                  <h2 className="text-xl md:text-2xl font-bold text-[#111418] font-display mb-1">
                     {member.name}
                   </h2>
-                  <p className="text-primary font-bold text-sm tracking-wide uppercase mb-4">
+                  <p className="text-primary font-bold text-xs md:text-sm tracking-wide uppercase mb-4">
                     {member.role}
                   </p>
-                  <p className="text-gray-600 leading-relaxed mb-6">
+                  <p className="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
                     {member.desc}
                   </p>
 
@@ -112,7 +112,7 @@ const Contact: React.FC = () => {
 
                 {/* Image */}
                 <div className="w-full md:w-[350px] shrink-0">
-                  <div className="aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden shadow-md bg-gray-200">
+                  <div className="aspect-square md:aspect-square rounded-2xl overflow-hidden shadow-md bg-gray-200 max-w-[300px] mx-auto md:max-w-none">
                     <img
                       src={getLocalImage(teamImages[index], "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2000&auto=format&fit=crop")}
                       alt={member.name}

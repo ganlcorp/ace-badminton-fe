@@ -1,146 +1,193 @@
-import React, { useRef } from "react";
-import { Calendar, Users, ArrowRight, ChevronLeft, ChevronRight, LucideIcon, Sparkles } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
+import React, { useState } from "react";
+import { Award, Menu, ChevronDown, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
-import { getLocalImage } from "../utils/imageUtils";
 
-interface ActivityItem {
-  id: number;
-  title: string;
-  description: string;
-  imageName: string;
-  label: string;
-  icon: LucideIcon;
+interface HeaderProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
 }
 
-const Activities: React.FC = () => {
-  const { t } = useLanguage();
-  const scrollRef = useRef<HTMLDivElement>(null);
+const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
+  const { language, setLanguage, t } = useLanguage();
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const activities: ActivityItem[] = [
-    {
-      id: 1,
-      title: t.activities.items[0].title,
-      description: t.activities.items[0].desc,
-      imageName: "spring_2024.jpg",
-      label: t.activities.items[0].label,
-      icon: Calendar
-    },
-    {
-      id: 2,
-      title: t.activities.items[1].title,
-      description: t.activities.items[1].desc,
-      imageName: "summer_2025.jpg",
-      label: t.activities.items[1].label,
-      icon: Users
-    }
+  // Map internal IDs to display labels
+  const navItems = [
+    { id: 'home', label: t.nav.home },
+    { id: 'ranking', label: t.nav.ranking },
+    { id: 'tournament', label: t.nav.tournament },
+    { id: 'contact', label: t.nav.contact }
   ];
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 340; // Approx card width + gap
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+  const toggleLanguage = (lang: 'en' | 'vi') => {
+    setLanguage(lang);
+    setIsLangOpen(false);
+  };
+
+  const handleMobileNavClick = (tabId: string) => {
+    setActiveTab(tabId);
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <section className="flex flex-col items-center bg-emerald-900/80 py-16 px-4 backdrop-blur-sm border-t border-white/10">
-      <div className="max-w-[1200px] w-full flex flex-col gap-8">
-        <ScrollReveal>
-          <div className="flex flex-col gap-2 items-center text-center">
-            <span className="text-white/80 font-bold tracking-wider uppercase text-sm">
-              {t.activities.header_sub}
-            </span>
-            <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight font-display">
-              {t.activities.header_title}
-            </h2>
-          </div>
-        </ScrollReveal>
-
-        <div className="relative group">
-          <div
-            ref={scrollRef}
-            className="flex overflow-x-auto gap-6 pb-8 pt-2 px-2 snap-x snap-mandatory no-scrollbar scroll-smooth"
+    <>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap px-4 md:px-10 py-3 bg-emerald-950/95 backdrop-blur-md shadow-lg border-b border-emerald-900/50 transition-all duration-500"
+      >
+        <div
+          className="flex items-center gap-3 md:gap-4 text-white cursor-pointer z-50 shrink-0"
+          onClick={() => setActiveTab('home')}
+        >
+          <motion.div
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.6 }}
+            className="size-9 md:size-10 bg-white/20 rounded-full flex items-center justify-center text-white"
           >
-            {activities.map((activity, index) => (
-              <div key={activity.id} className="min-w-[300px] md:min-w-[360px] flex-1 snap-center">
-                <ScrollReveal delay={index * 0.1} direction="right" className="h-full">
-                  <div className="flex flex-col h-full rounded-xl bg-white shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-transparent overflow-hidden group/card">
-                    <div className="h-48 w-full overflow-hidden">
-                      <div
-                        className="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover/card:scale-110"
-                        style={{ backgroundImage: `url('${getLocalImage(activity.imageName)}')` }}
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col gap-3 flex-1 relative z-10 bg-white">
-                      <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wide">
-                        <activity.icon className="w-4 h-4" />
-                        {activity.label}
-                      </div>
-                      <h3 className="text-xl font-bold text-[#111418] font-display">
-                        {activity.title}
-                      </h3>
-                      <p className="text-[#617589] text-sm leading-relaxed mb-4">
-                        {activity.description}
-                      </p>
-                      <div className="mt-auto">
-                        <button className="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all group/btn">
-                          {t.activities.details} <ArrowRight className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              </div>
-            ))}
+            <Award className="w-5 h-5 md:w-6 md:h-6" />
+          </motion.div>
+          <h2 className="text-base md:text-lg font-bold leading-tight tracking-[-0.015em] font-display">
+            <span className="hidden sm:inline">ACE Badminton</span>
+            <span className="sm:hidden">ACE</span>
+          </h2>
+        </div>
 
-            {/* Dynamic Coming Soon Card (Only shows if items < 3) */}
-            {activities.length < 3 && (
-               <div className="min-w-[300px] md:min-w-[360px] flex-1 snap-center">
-                <ScrollReveal delay={0.2} direction="right" className="h-full">
-                  <div className="flex flex-col h-full rounded-xl bg-white/5 border-2 border-dashed border-white/20 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 items-center justify-center p-8 group/coming-soon cursor-default">
-                    <div className="size-20 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover/coming-soon:scale-110 transition-transform duration-500">
-                      <Sparkles className="w-10 h-10 text-gray-400 group-hover/coming-soon:text-primary transition-colors" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white/60 group-hover/coming-soon:text-white transition-colors font-display mb-2">
-                      Coming Soon
-                    </h3>
-                    <p className="text-white/40 text-center text-sm mb-6 max-w-[200px]">
-                      We are planning more exciting activities for you.
-                    </p>
-                    <div className="flex items-center gap-2 text-white/40 group-hover/coming-soon:text-primary transition-colors font-medium">
-                      <span>Stay tuned</span>
-                      <ArrowRight className="w-4 h-4 animate-pulse" />
-                    </div>
-                  </div>
-                </ScrollReveal>
-               </div>
-            )}
-          </div>
+        {/* Desktop Nav - Centered Absolutely */}
+        <nav className="hidden md:flex items-center gap-9 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {navItems.map((item, index) => {
+            const isActive = activeTab === item.id;
+            return (
+              <motion.button
+                key={index}
+                onClick={() => setActiveTab(item.id)}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index + 0.5 }}
+                className={`text-sm font-medium leading-normal transition-colors cursor-pointer relative group ${
+                  isActive ? 'text-primary' : 'text-white hover:text-primary'
+                }`}
+              >
+                {item.label}
+                {/* Highlight Line */}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                  isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}></span>
+              </motion.button>
+            );
+          })}
+        </nav>
 
-          <div className="flex justify-center gap-4 mt-4">
+        <div className="flex items-center gap-2 md:gap-4 z-50">
+           {/* Mobile Menu Trigger */}
+           <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex size-9 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors border border-white/10 text-white z-50"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+
+          {/* Language Switcher Dropdown - Always visible now but smaller on mobile */}
+          <div className="relative">
             <button
-              onClick={() => scroll('left')}
-              aria-label="Previous"
-              className="size-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-[#111418] hover:bg-gray-50 hover:scale-110 transition-all active:scale-95"
+              onClick={() => setIsLangOpen(!isLangOpen)}
+              className="flex h-9 md:h-10 px-2 md:px-3 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors border border-white/10 gap-1 md:gap-2 text-white"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <span className="text-base md:text-lg">{language === 'en' ? '🇺🇸' : '🇻🇳'}</span>
+              <span className="text-sm font-medium hidden sm:block">{language === 'en' ? 'ENG' : 'VIE'}</span>
+              <ChevronDown className={`w-3 h-3 md:w-4 md:h-4 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`} />
             </button>
-            <button
-              onClick={() => scroll('right')}
-              aria-label="Next"
-              className="size-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-[#111418] hover:bg-gray-50 hover:scale-110 transition-all active:scale-95"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+
+            <AnimatePresence>
+              {isLangOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-xl overflow-hidden py-1 border border-gray-100"
+                >
+                  <button
+                    onClick={() => toggleLanguage('en')}
+                    className={`w-full px-4 py-2 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${language === 'en' ? 'bg-blue-50 text-primary' : 'text-gray-700'}`}
+                  >
+                    <span className="text-lg">🇺🇸</span>
+                    <span className="text-sm font-medium">English</span>
+                  </button>
+                  <button
+                    onClick={() => toggleLanguage('vi')}
+                    className={`w-full px-4 py-2 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${language === 'vi' ? 'bg-blue-50 text-primary' : 'text-gray-700'}`}
+                  >
+                    <span className="text-lg">🇻🇳</span>
+                    <span className="text-sm font-medium">Tiếng Việt</span>
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
-      </div>
-    </section>
+      </motion.header>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "100vh" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-emerald-950 pt-24 px-6 md:hidden flex flex-col gap-8 overflow-hidden"
+          >
+            <div className="flex flex-col gap-6 items-center">
+              {navItems.map((item, index) => {
+                const isActive = activeTab === item.id;
+                return (
+                  <motion.button
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + index * 0.1 }}
+                    onClick={() => handleMobileNavClick(item.id)}
+                    className={`text-2xl font-bold transition-colors ${
+                      isActive ? 'text-primary' : 'text-white'
+                    }`}
+                  >
+                    {item.label}
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-auto mb-10 flex flex-col items-center gap-4 border-t border-white/10 pt-8"
+            >
+              <p className="text-white/50 text-sm">Select Language</p>
+              <div className="flex gap-4">
+                 <button
+                  onClick={() => toggleLanguage('en')}
+                  className={`px-6 py-2 rounded-full border ${language === 'en' ? 'bg-white text-emerald-900 border-white' : 'border-white/30 text-white'}`}
+                 >
+                   🇺🇸 English
+                 </button>
+                 <button
+                  onClick={() => toggleLanguage('vi')}
+                  className={`px-6 py-2 rounded-full border ${language === 'vi' ? 'bg-white text-emerald-900 border-white' : 'border-white/30 text-white'}`}
+                 >
+                   🇻🇳 Tiếng Việt
+                 </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
-export default Activities;
+export default Header;

@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
     <section
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="relative flex flex-col items-center justify-center py-16 px-4 md:px-10 lg:px-20 min-h-[90vh] overflow-hidden"
+      className="relative flex flex-col items-center justify-center py-24 md:py-16 px-4 md:px-10 lg:px-20 min-h-[90vh] overflow-hidden"
     >
       {/* Dynamic Animated Background Layer */}
       <div className="absolute inset-0 z-0">
@@ -58,18 +58,18 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="max-w-[1200px] w-full z-10">
-        <div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-20 items-center">
+        <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-20 items-center">
 
           {/* Text Content */}
           <motion.div
             style={{ y: yText, x: mouseXSpring }}
-            className="flex flex-col gap-6 lg:w-1/2 text-center lg:text-left"
+            className="flex flex-col gap-4 md:gap-6 lg:w-1/2 text-center lg:text-left"
           >
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em] font-display drop-shadow-xl"
+              className="text-white text-3xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em] font-display drop-shadow-xl"
             >
               {t.hero.title_start} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-300">{t.hero.title_end}</span>
             </motion.h1>
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-gray-200 text-lg font-normal leading-relaxed"
+              className="text-gray-200 text-base md:text-lg font-normal leading-relaxed max-w-xl lg:max-w-none mx-auto"
             >
               {t.hero.desc}
             </motion.p>
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex gap-4 justify-center lg:justify-start pt-4"
+              className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4"
             >
               <button className="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary hover:bg-blue-600 transition-all hover:scale-105 active:scale-95 text-white text-base font-bold shadow-[0_0_20px_rgba(19,127,236,0.5)]">
                 {t.hero.join}
@@ -119,10 +119,10 @@ const Hero: React.FC = () => {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md p-3 rounded-lg border border-white/20"
+                className="absolute bottom-2 right-2 md:bottom-4 md:right-4 bg-black/60 backdrop-blur-md p-2 md:p-3 rounded-lg border border-white/20"
               >
-                <p className="text-white text-xs font-bold">{t.hero.next_tour}</p>
-                <p className="text-primary text-sm font-bold">Comming soon</p>
+                <p className="text-white text-[10px] md:text-xs font-bold">{t.hero.next_tour}</p>
+                <p className="text-primary text-xs md:text-sm font-bold">Comming soon</p>
               </motion.div>
             </div>
           </motion.div>
