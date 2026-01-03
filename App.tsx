@@ -53,10 +53,10 @@ const App: React.FC = () => {
       />
 
       {/* Content Layer - Explicit z-index 20 to sit above spotlight */}
-      <div className="relative flex min-h-screen w-full flex-col group/design-root z-20">
+      <div className="relative flex min-h-screen w-full flex-col group/design-root z-20 overflow-x-hidden">
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        <main className="flex flex-col grow">
+        <main className="flex flex-col grow w-full">
           <AnimatePresence mode="wait">
             {activeTab === 'ranking' ? (
               <Ranking key="ranking" />
